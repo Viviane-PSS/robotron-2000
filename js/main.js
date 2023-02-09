@@ -35,7 +35,6 @@ const pecas = {
     }
 }
 
-
 controle.forEach((elemento, index)=>{
     elemento.addEventListener("click", (evento) => {
         manipulaDados(evento.target.dataset.controle, evento.target.parentNode);
@@ -62,3 +61,33 @@ estatisticas.forEach((elemento) => {
 });
 
 }
+
+// Mudar cores
+const botaoCor = document.querySelectorAll("[data-cor]");
+// const botaoCorMais = document.querySelector("#botao-cor-mais");
+// const botaoCorMenos = document.querySelector("#botao-cor-menos");
+const imgCor=document.querySelector("#robotron");
+const coresRobotron = ["robotron.png","RobotronAmarelo.png", "RobotronBranco.png",
+                        "RobotronPreto.png", "RobotronRosa.png","RobotronVermelho.png"];
+let indexCor=0;
+
+function mudarCorRobo(botao){
+    if(botao ==="+"){
+        indexCor++;
+        if(indexCor>=coresRobotron.length) indexCor=0;
+        imgCor.src = `./img/${coresRobotron[indexCor]}`;
+    }else{
+        
+        indexCor--;
+        if(indexCor<0) indexCor= coresRobotron.length-1;
+        imgCor.src = `./img/${coresRobotron[indexCor]}`;
+    }
+}
+
+
+botaoCor.forEach((elemento, i)=>{
+    
+    elemento.addEventListener("click",(evento) =>{
+        mudarCorRobo(evento.target.dataset.cor);
+    });
+});   
